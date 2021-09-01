@@ -11,6 +11,10 @@
   var nig_puldata = document.getElementsByClassName('nig_pul')
   var day = document.getElementsByClassName('day')
 /*-------------------------------------------------------------------*/
+<<<<<<< HEAD
+=======
+  document.cookie = 'name=太郎';
+>>>>>>> f25b54b1a99984a2f1b798a25ec47599be4c981b
 
   day[0].onchange = day_calc;
 
