@@ -10,6 +10,7 @@
   var nig_mindata = document.getElementsByClassName('nig_min')
   var nig_puldata = document.getElementsByClassName('nig_pul')
   var day = document.getElementsByClassName('day')
+  
 /*-------------------------------------------------------------------*/
 if(document.cookie.length > 0){
   var cookie_data = document.cookie.split(';');
