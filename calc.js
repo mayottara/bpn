@@ -12,6 +12,12 @@
   var day = document.getElementsByClassName('day')
 /*-------------------------------------------------------------------*/
   day[0].onchange = day_calc;
+  if(document.cookie == null){
+    var cookie_data = document.cookie.split(';');
+    var day_cookie_data = document.cookie.split('=');
+    d_data[i].value = day_cookie_data[1];
+  }
+
 
   for(let i = 0; i < mor_maxdata.length; i++){
     mor_maxdata[i].onchange = calc;
@@ -29,6 +35,7 @@
   function day_data(d_data){
     var today = new Date();
     d_data[0].value = `${today.getFullYear()}/${d_data[0].value}`   //年の情報追加
+    document.cookie = day_cookie=d_data[0].value
 
     for(let i = 0; i < d_data.length; i++){
       var tomo = new Date(d_data[0].value);
