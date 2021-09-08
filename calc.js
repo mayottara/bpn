@@ -10,20 +10,24 @@
   var nig_mindata = document.getElementsByClassName('nig_min')
   var nig_puldata = document.getElementsByClassName('nig_pul')
   var day = document.getElementsByClassName('day')
-  
 /*-------------------------------------------------------------------*/
-if(document.cookie.length > 0){
-  var cookie_data = document.cookie.split(';');
-  var day_cookie_data = document.cookie.split('=');
-  day[0].value = day_cookie_data[1];
-  for(let i = 0; i < day.length; i++){
-    var tomo = new Date(day[0].value);
-    tomo.setDate( tomo.getDate() + i );     //日を加算
 
-    day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;
+//cookie読み出し処理**************************************************
+if(document.cookie.length > 0){                       //cookieにデータがある場合実行
+  var cookie_data = document.cookie.split(';');       //データ分割(データごとに分割)
+  var day_cookie_data = document.cookie.split('=');   //データ分割(名前とデータを分割)
+  day[0].value = day_cookie_data[1];                  //日付の1つ目にcookieを代入
+
+  for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
+    var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
+    tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
+
+    day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
   }
 }
+//********************************************************************
 
+//各項目にonchange設定***************************
 day[0].onchange = day_calc;
 
 for(let i = 0; i < mor_maxdata.length; i++){
@@ -32,52 +36,53 @@ for(let i = 0; i < mor_maxdata.length; i++){
 for(let i = 0; i < mor_mindata.length; i++){
   mor_mindata[i].onchange = calc;
 }
+//***********************************************
 
 /*-------------------------------------------------------------------*/
 //日付入力時処理
-  function day_calc(){
+  function day_calc(){    //onchangeで呼ばれ、処理を行う関数を呼び出す
     day_data(day);
   }
 
   function day_data(d_data){
-    var today = new Date();
-    d_data[0].value = `${today.getFullYear()}/${d_data[0].value}`   //年の情報追加
-    document.cookie = `day_cookie=${d_data[0].value}`;
+    var today = new Date();                                          //本日の日付をDate型で取得(今の年を取得するため)
+    d_data[0].value = `${today.getFullYear()}/${d_data[0].value}`    //今の年の情報を１つ目の日付データに追加
+    document.cookie = `day_cookie=${d_data[0].value}`;               //cookieに日付を保存
 
-    for(let i = 0; i < d_data.length; i++){
-      var tomo = new Date(d_data[0].value);
-      tomo.setDate( tomo.getDate() + i );     //日を加算
+    for(let i = 0; i < d_data.length; i++){                         //日付データの数だけ繰り返す
+      var tomo = new Date(d_data[0].value);                         //１つ目の日付データをDate形に変換
+      tomo.setDate( tomo.getDate() + i );                           //日をi日分加算
 
-      d_data[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`
+      d_data[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`  //加算したデータを保存
     }
   }
 /*-------------------------------------------------------------------*/
 //平均値算出処理
-  function calc(){
-    calc_data(mor_maxdata , mor_bpmax_ave);
-    calc_data(mor_mindata , mor_bpmin_ave);
+  function calc(){                            //onchangeで呼ばれ、処理を行う関数を呼び出す
+    calc_data(mor_maxdata , mor_bpmax_ave);   //血圧の最大値の処理
+    calc_data(mor_mindata , mor_bpmin_ave);   //血圧の最小値の処理
   }
 
   function calc_data(data , ptn){
-    let sum = 0;
-    let num = 0;
-    for(let i = 0; i < data.length; i++){
-      if(!isNaN(data[i].value) && data[i].value.length > 0){    //入力が数字かつ空でないとき
-        sum += parseInt(data[i].value);
-        num++;
+    let sum = 0;      //データの合計値
+    let num = 0;      //データの数
+    for(let i = 0; i < data.length; i++){                       //データの数だけ繰り返す
+      if(!isNaN(data[i].value) && data[i].value.length > 0){    //入力が数字かつ空でないとき実行
+        sum += parseInt(data[i].value);                         //記入されているデータの合計値を加算
+        num++;                                                  //記入されているデータの数を1増やす
       }
     }
  
-    if(num != 0){
-      sum = sum / num;
+    if(num != 0){         //データの数が0ではない時(データがある時)実行
+      sum = sum / num;    //平均値計算
     }
-    ptn.innerHTML = sum
+    ptn.innerHTML = sum;  //平均値を表示
   }
 /*-------------------------------------------------------------------*/
 //ボタン(本日の日付入力)
   btn.onclick = function(){
-    var today = new Date();
-    day[0].value = String(today.getMonth() + 1) + "/" + String(today.getDate());;
-    day_data(day);
+    var today = new Date();                                                       //本日の日付をDate形で取得
+    day[0].value = String(today.getMonth() + 1) + "/" + String(today.getDate());  //本日の日付を日付の1つ目に代入(月/日)
+    day_data(day);                                                                //残りの日付を表示するため関数呼び出し
   }
 })();
