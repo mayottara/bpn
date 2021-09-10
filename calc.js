@@ -92,6 +92,7 @@ for(let i = 0; i < mor_maxdata.length; i++){
     calc_data(nig_maxdata , nig_bpmax_ave);   //夜の血圧の最大値の処理
     calc_data(nig_mindata , nig_bpmin_ave);   //夜の血圧の最小値の処理
     calc_data(nig_puldata , nig_pul_ave);     //夜の脈拍の処理
+    data_keep();
   }
 
   function calc_data(data , ptn){
@@ -132,7 +133,7 @@ for(let i = 0; i < mor_maxdata.length; i++){
       str += mor_maxdata[i].value+','+mor_mindata[i].value+','+mor_puldata[i].value+','+
              nig_maxdata[i].value+','+nig_mindata[i].value+','+nig_puldata[i].value+',';
     }
-    alert(str)
+    document.cookie = str;
   }
 
 /*-------------------------------------------------------------------*/
