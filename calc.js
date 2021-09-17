@@ -21,8 +21,8 @@
 
 //cookie読み出し処理
   if(document.cookie.length > 0){                       //cookieにデータがある場合実行
-    var DC = document.cookie.split(';');                //データ分割(データごとに分割)
-    var day_cookie = DC.split('=');                     //データ分割(名前とデータを分割)
+    var D = document.cookie.split(';');                //データ分割(データごとに分割)
+    var day_cookie = D.split('=');                     //データ分割(名前とデータを分割)
     for(let i = 0; i < day_cookie.length; i++){
       if(day_cookie[i] === "day_cookie"){
         day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
