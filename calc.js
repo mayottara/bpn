@@ -27,7 +27,7 @@
     alert(day_cookie[1]);
 
     for(let i = 0; i < day_cookie.length; i++){
-      if(day_cookie[i] === "day_cookie"){
+      if(day_cookie[i] === "day_cookie" || day_cookie[i] === " day_cookie"){
         day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
 
         for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
