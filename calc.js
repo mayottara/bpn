@@ -20,15 +20,13 @@
 /*-------------------------------------------------------------------*/
 
 //cookie読み出し処理
-  if(document.cookie.length > 0){                       //cookieにデータがある場合実行
-    var D = document.cookie.split(';');                //データ分割(データごとに分割)
-    var day_cookie = D.split('=');                     //データ分割(名前とデータを分割)
-    console.log(day_cookie[0]);
-    console.log(day_cookie[1]);
+  if(document.cookie.length > 0){                             //cookieにデータがある場合実行
+    var D_cookie = document.cookie.split(';');                //データ分割(データごとに分割)
 
-    for(let i = 0; i < day_cookie.length; i++){
-      if(day_cookie[i] === "day_cookie" || day_cookie[i] === " day_cookie"){
-        day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
+    for(let i = 0; i < D_cookie.length; i++){
+      var day_cookie = D_cookie[i].split('=');                //データ分割(名前とデータを分割)
+      if(day_cookie[0] === "day_cookie" || day_cookie[0] === " day_cookie"){
+        day[0].value = day_cookie[1];                         //日付の1つ目にcookieを代入
 
         for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
           var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
