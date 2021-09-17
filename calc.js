@@ -20,36 +20,36 @@
 /*-------------------------------------------------------------------*/
 
 //cookie読み出し処理
-if(document.cookie.length > 0){                       //cookieにデータがある場合実行
-  var DC = document.cookie.split(';');                //データ分割(データごとに分割)
-  var day_cookie = DC.split('=');                     //データ分割(名前とデータを分割)
-  for(let i = 0; i < day_cookie.length; i++){
-    if(day_cookie[i] === "day_cookie"){
-      day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
+  if(document.cookie.length > 0){                       //cookieにデータがある場合実行
+    var DC = document.cookie.split(';');                //データ分割(データごとに分割)
+    var day_cookie = DC.split('=');                     //データ分割(名前とデータを分割)
+    for(let i = 0; i < day_cookie.length; i++){
+      if(day_cookie[i] === "day_cookie"){
+        day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
 
-      for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
-        var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
-        tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
+        for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
+          var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
+          tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
 
-        day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
+          day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
+        }
       }
     }
   }
-}
 
 /*-------------------------------------------------------------------*/
 
 //各項目にonchange設定
-day[0].onchange = day_calc;
+  day[0].onchange = day_calc;
 
-for(let i = 0; i < mor_maxdata.length; i++){
-  mor_maxdata[i].onchange = calc;
-  mor_mindata[i].onchange = calc;
-  mor_puldata[i].onchange = calc;
-  nig_maxdata[i].onchange = calc;
-  nig_mindata[i].onchange = calc;
-  nig_puldata[i].onchange = calc;
-}
+  for(let i = 0; i < mor_maxdata.length; i++){
+    mor_maxdata[i].onchange = calc;
+    mor_mindata[i].onchange = calc;
+    mor_puldata[i].onchange = calc;
+    nig_maxdata[i].onchange = calc;
+    nig_mindata[i].onchange = calc;
+    nig_puldata[i].onchange = calc;
+  }
 
 /*-------------------------------------------------------------------*/
 
