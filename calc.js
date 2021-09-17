@@ -21,15 +21,19 @@
 
 //cookie読み出し処理
 if(document.cookie.length > 0){                       //cookieにデータがある場合実行
-  //var cookie_data = document.cookie.split(';');       //データ分割(データごとに分割)
-  var day_cookie = document.cookie.split('=');   //データ分割(名前とデータを分割)
-  day[0].value = day_cookie[1];                  //日付の1つ目にcookieを代入
+  var DC = document.cookie.split(';');                //データ分割(データごとに分割)
+  var day_cookie = DC.split('=');                     //データ分割(名前とデータを分割)
+  for(let i = 0; i < day_cookie.length; i + 2){
+    if(day_cookie[i] === "day_cookie"){
+      day[0].value = day_cookie[i+1];                  //日付の1つ目にcookieを代入
 
-  for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
-    var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
-    tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
+      for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
+        var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
+        tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
 
-    day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
+        day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
+      }
+    }
   }
 }
 
@@ -46,21 +50,6 @@ for(let i = 0; i < mor_maxdata.length; i++){
   nig_mindata[i].onchange = calc;
   nig_puldata[i].onchange = calc;
 }
-// for(let i = 0; i < mor_mindata.length; i++){
-//   mor_mindata[i].onchange = calc;
-// }
-// for(let i = 0; i < mor_puldata.length; i++){
-//   mor_puldata[i].onchange = calc;
-// }
-// for(let i = 0; i < nig_maxdata.length; i++){
-//   nig_maxdata[i].onchange = calc;
-// }
-// for(let i = 0; i < nig_mindata.length; i++){
-//   nig_mindata[i].onchange = calc;
-// }
-// for(let i = 0; i < nig_puldata.length; i++){
-//   nig_puldata[i].onchange = calc;
-// }
 
 /*-------------------------------------------------------------------*/
 
