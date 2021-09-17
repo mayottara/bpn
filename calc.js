@@ -23,8 +23,8 @@
   if(document.cookie.length > 0){                       //cookieにデータがある場合実行
     var D = document.cookie.split(';');                //データ分割(データごとに分割)
     var day_cookie = D.split('=');                     //データ分割(名前とデータを分割)
-    alert(day_cookie[0]);
-    alert(day_cookie[1]);
+    console.log(day_cookie[0]);
+    console.log(day_cookie[1]);
 
     for(let i = 0; i < day_cookie.length; i++){
       if(day_cookie[i] === "day_cookie" || day_cookie[i] === " day_cookie"){
