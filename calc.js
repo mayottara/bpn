@@ -27,7 +27,7 @@
       let cookie_DATA = cookie_D[i].split('=');                //データ分割(名前とデータを分割)
       let j;
       
-      //日付のcookie読み出し
+      //日付のcookie読み出し***************************************************
       if(cookie_DATA[0] === "day_cookie" || cookie_DATA[0] === " day_cookie"){
         day[0].value = cookie_DATA[1];                         //日付の1つ目にcookieを代入
 
@@ -39,7 +39,7 @@
         }
       }
       
-      //血圧等のcookieデータ読み出し
+      //血圧等のcookieデータ読み出し********************************************
       if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
         let deta_list = cookie_DATA[1].split(',');
 
