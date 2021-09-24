@@ -21,21 +21,37 @@
 
 //cookie読み出し処理
   if(document.cookie.length > 0){                             //cookieにデータがある場合実行
-    let D_cookie = document.cookie.split(';');                //データ分割(データごとに分割)
+    let cookie_D = document.cookie.split(';');                //データ分割(データごとに分割)
     
-    for(let i = 0; i < D_cookie.length; i++){
-      let day_cookie = D_cookie[i].split('=');                //データ分割(名前とデータを分割)
-      if(day_cookie[0] === "day_cookie" || day_cookie[0] === " day_cookie"){
-        day[0].value = day_cookie[1];                         //日付の1つ目にcookieを代入
+    for(let i = 0; i < cookie_D.length; i++){
+      let cookie_DATA = cookie_D[i].split('=');                //データ分割(名前とデータを分割)
+      let j;
+      
+      //日付のcookie読み出し
+      if(cookie_DATA[0] === "day_cookie" || cookie_DATA[0] === " day_cookie"){
+        day[0].value = cookie_DATA[1];                         //日付の1つ目にcookieを代入
 
-        for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
+        for(j = 0; j < day.length; j++){                          //日付データの数だけ繰り返す
           let tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
-          tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
+          tomo.setDate( tomo.getDate() + j );                         //日をi日分加算
 
-          day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
+          day[j].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
         }
       }
       
+      //血圧等のcookieデータ読み出し
+      if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
+        let deta_list = cookie_D[1].split(',');
+
+        for(j = 0; j < mor_maxdata.length; j++){
+          mor_maxdata[j].value = deta_list[6*j].value;
+          mor_mindata[j].value = deta_list[(6 * j) + 1].value;
+          mor_puldata[j].value = deta_list[(6 * j) + 2].value;
+          nig_maxdata[j].value = deta_list[(6 * j) + 3].value;
+          nig_mindata[j].value = deta_list[(6 * j) + 4].value;
+          nig_puldata[j].value = deta_list[(6 * j) + 5].value;
+        }
+      }
     }
   }
 
