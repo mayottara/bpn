@@ -10,31 +10,32 @@
   const nig_bpmin_ave = document.getElementById('nig_bpmin_ave')
   const nig_pul_ave = document.getElementById('nig_pul_ave')
 
-  var mor_maxdata = document.getElementsByClassName('mor_max')
-  var mor_mindata = document.getElementsByClassName('mor_min')
-  var mor_puldata = document.getElementsByClassName('mor_pul')
-  var nig_maxdata = document.getElementsByClassName('nig_max')
-  var nig_mindata = document.getElementsByClassName('nig_min')
-  var nig_puldata = document.getElementsByClassName('nig_pul')
-  var day = document.getElementsByClassName('day')
+  let mor_maxdata = document.getElementsByClassName('mor_max')
+  let mor_mindata = document.getElementsByClassName('mor_min')
+  let mor_puldata = document.getElementsByClassName('mor_pul')
+  let nig_maxdata = document.getElementsByClassName('nig_max')
+  let nig_mindata = document.getElementsByClassName('nig_min')
+  let nig_puldata = document.getElementsByClassName('nig_pul')
+  let day = document.getElementsByClassName('day')
 /*-------------------------------------------------------------------*/
 
 //cookie読み出し処理
   if(document.cookie.length > 0){                             //cookieにデータがある場合実行
-    var D_cookie = document.cookie.split(';');                //データ分割(データごとに分割)
-
+    let D_cookie = document.cookie.split(';');                //データ分割(データごとに分割)
+    
     for(let i = 0; i < D_cookie.length; i++){
-      var day_cookie = D_cookie[i].split('=');                //データ分割(名前とデータを分割)
+      let day_cookie = D_cookie[i].split('=');                //データ分割(名前とデータを分割)
       if(day_cookie[0] === "day_cookie" || day_cookie[0] === " day_cookie"){
         day[0].value = day_cookie[1];                         //日付の1つ目にcookieを代入
 
         for(let i = 0; i < day.length; i++){                          //日付データの数だけ繰り返す
-          var tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
+          let tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
           tomo.setDate( tomo.getDate() + i );                         //日をi日分加算
 
           day[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`;  //加算したデータを保存
         }
       }
+      
     }
   }
 
@@ -60,12 +61,12 @@
   }
 
   function day_data(d_data){
-    var today = new Date();                                          //本日の日付をDate型で取得(今の年を取得するため)
+    let today = new Date();                                          //本日の日付をDate型で取得(今の年を取得するため)
     d_data[0].value = `${today.getFullYear()}/${d_data[0].value}`    //今の年の情報を１つ目の日付データに追加
-    document.cookie = `day_cookie=${d_data[0].value}`;               //cookieに日付を保存
+    document.cookie = `day_cookie=${d_data[0].value};max-age=1728000`;               //cookieに日付を保存
 
     for(let i = 0; i < d_data.length; i++){                         //日付データの数だけ繰り返す
-      var tomo = new Date(d_data[0].value);                         //１つ目の日付データをDate形に変換
+      let tomo = new Date(d_data[0].value);                         //１つ目の日付データをDate形に変換
       tomo.setDate( tomo.getDate() + i );                           //日をi日分加算
 
       d_data[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`  //加算したデータを保存
@@ -105,7 +106,7 @@
 
 //ボタン(本日の日付入力)
   btn.onclick = function(){
-    var today = new Date();                                                       //本日の日付をDate形で取得
+    let today = new Date();                                                       //本日の日付をDate形で取得
     day[0].value = String(today.getMonth() + 1) + "/" + String(today.getDate());  //本日の日付を日付の1つ目に代入(月/日)
     day_data(day);                                                                //残りの日付を表示するため関数呼び出し
   }
@@ -118,12 +119,12 @@
   }
 
   function data_keep(){
-    var str = 'cookie_data=';
+    let str = 'cookie_data=';
     for(let i = 0; i < mor_maxdata.length; i++){
       str += mor_maxdata[i].value+','+mor_mindata[i].value+','+mor_puldata[i].value+','+
              nig_maxdata[i].value+','+nig_mindata[i].value+','+nig_puldata[i].value+',';
     }
-    document.cookie = str;
+    document.cookie = `${str};max-age=1728000`;
   }
 
 /*-------------------------------------------------------------------*/
