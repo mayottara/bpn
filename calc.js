@@ -44,12 +44,12 @@
         let deta_list = cookie_D[1].split(',');
 
         for(j = 0; j < mor_maxdata.length; j++){
-          mor_maxdata[j].value = `${deta_list[6 * j].value}`;
-          mor_mindata[j].value = `${deta_list[6 * j + 1].value}`;
-          mor_puldata[j].value = `${deta_list[6 * j + 2].value}`;
-          nig_maxdata[j].value = `${deta_list[6 * j + 3].value}`;
-          nig_mindata[j].value = `${deta_list[6 * j + 4].value}`;
-          nig_puldata[j].value = `${deta_list[6 * j + 5].value}`;
+          mor_maxdata[j].value = deta_list[6 * j];
+          mor_mindata[j].value = deta_list[6 * j + 1];
+          mor_puldata[j].value = deta_list[6 * j + 2];
+          nig_maxdata[j].value = deta_list[6 * j + 3];
+          nig_mindata[j].value = deta_list[6 * j + 4];
+          nig_puldata[j].value = deta_list[6 * j + 5];
         }
       }
     }
