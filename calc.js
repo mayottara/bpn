@@ -25,13 +25,12 @@
     
     for(let i = 0; i < cookie_D.length; i++){
       let cookie_DATA = cookie_D[i].split('=');                //データ分割(名前とデータを分割)
-      let j;
       
       //日付のcookie読み出し***************************************************
       if(cookie_DATA[0] === "day_cookie" || cookie_DATA[0] === " day_cookie"){
         day[0].value = cookie_DATA[1];                         //日付の1つ目にcookieを代入
 
-        for(j = 0; j < day.length; j++){                          //日付データの数だけ繰り返す
+        for(let j = 0; j < day.length; j++){                          //日付データの数だけ繰り返す
           let tomo = new Date(day[0].value);                          //１つ目の日付データをDate形に変換
           tomo.setDate( tomo.getDate() + j );                         //日をi日分加算
 
@@ -43,7 +42,7 @@
       if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
         let deta_list = cookie_DATA[1].split(',');
 
-        for(j = 0; j < mor_maxdata.length; j++){
+        for(let j = 0; j < mor_maxdata.length; j++){
           mor_maxdata[j].value = deta_list[6 * j];
           mor_mindata[j].value = deta_list[6 * j + 1];
           mor_puldata[j].value = deta_list[6 * j + 2];
@@ -129,11 +128,7 @@
 
 /*-------------------------------------------------------------------*/
 
-//ボタン(本日の日付入力)
-  testbtn.onclick = function(){
-   data_keep(day);
-  }
-
+//表のデータをcookieに保存
   function data_keep(){
     let str = 'cookie_data=';
     for(let i = 0; i < mor_maxdata.length; i++){
