@@ -39,7 +39,7 @@
       }
       
       //血圧等のcookieデータ読み出し********************************************
-      if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
+      else if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
         let deta_list = cookie_DATA[1].split(',');
 
         for(let j = 0; j < mor_maxdata.length; j++){
@@ -50,6 +50,7 @@
           nig_mindata[j].value = deta_list[6 * j + 4];
           nig_puldata[j].value = deta_list[6 * j + 5];
         }
+        calc();
       }
     }
   }
