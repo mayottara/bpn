@@ -41,7 +41,7 @@
       
       //血圧等のcookieデータ読み出し
       if(cookie_DATA[0] === "cookie_data" || cookie_DATA[0] === " cookie_data"){
-        let deta_list = cookie_D[1].split(',');
+        let deta_list = cookie_DATA[1].split(',');
 
         for(j = 0; j < mor_maxdata.length; j++){
           mor_maxdata[j].value = deta_list[6 * j];
