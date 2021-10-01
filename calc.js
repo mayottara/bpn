@@ -78,13 +78,11 @@
 
   function day_data(d_data){
     let today = new Date();                                          //本日の日付をDate型で取得(今の年を取得するため)
-    d_data[0].value = `${today.getFullYear()}/${d_data[0].value}`    //今の年の情報を１つ目の日付データに追加
-    document.cookie = `day_cookie=${d_data[0].value};max-age=1728000`;               //cookieに日付を保存
+    document.cookie = `day_cookie=${today.getFullYear()}/${d_data[0].value};max-age=1728000`;               //cookieに日付を保存
 
     for(let i = 0; i < d_data.length; i++){                         //日付データの数だけ繰り返す
-      let tomo = new Date(d_data[0].value);                         //１つ目の日付データをDate形に変換
+      let tomo = new Date(`${today.getFullYear()}/${d_data[0].value}`);                         //１つ目の日付データをDate形に変換
       tomo.setDate( tomo.getDate() + i );                           //日をi日分加算
-      alert(tomo.getDate() + i);
 
       d_data[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`  //加算したデータを保存
     }
