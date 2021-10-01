@@ -84,6 +84,7 @@
     for(let i = 0; i < d_data.length; i++){                         //日付データの数だけ繰り返す
       let tomo = new Date(d_data[0].value);                         //１つ目の日付データをDate形に変換
       tomo.setDate( tomo.getDate() + i );                           //日をi日分加算
+      console.log(tomo.getDate()+i);
 
       d_data[i].value = `${tomo.getMonth() + 1}/${tomo.getDate()}`  //加算したデータを保存
     }
