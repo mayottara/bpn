@@ -113,7 +113,7 @@
     }
  
     if(num != 0){         //データの数が0ではない時(データがある時)実行
-      sum = sum / num;    //平均値計算
+      sum = Math.round((sum / num) * 10) / 10;    //平均値計算
     }
     ptn.innerHTML = sum;  //平均値を表示
   }
